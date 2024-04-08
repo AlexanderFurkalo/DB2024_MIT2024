@@ -1,0 +1,16 @@
+Controller\MaterialController.class
+Controller\ManufacturerController.class
+Repository\PurchaseRepository.class
+Controller\FurnitureController.class
+Controller\PurchaseController.class
+model\Furniture.class
+Repository\ManufacturerRepository.class
+model\Purchase.class
+Controller\CustomerController.class
+Repository\CustomerRepository.class
+com\example\App.class
+model\Manufacturer.class
+Repository\FurnitureRepository.class
+model\Material.class
+model\Customer.class
+Repository\MaterialRepository.class
