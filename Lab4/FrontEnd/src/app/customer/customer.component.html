@@ -1,0 +1,94 @@
+    <div class="crud-buttons">
+      <button class="crud-button" (click)="performOperation('create')">Create</button>
+      <button class="crud-button" (click)="performOperation('get')">Read</button>
+      <button class="crud-button" (click)="performOperation('update')">Update</button>
+      <button class="crud-button" (click)="performOperation('delete')">Delete</button>
+    </div>
+
+    <div *ngIf="operation === 'create'">
+      <h2>Create Customer</h2>
+      <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" [(ngModel)]="newCustomer.first_name">
+      </div>
+      <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" [(ngModel)]="newCustomer.last_name">
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" [(ngModel)]="newCustomer.email">
+      </div>
+      <button (click)="createCustomer()">Create</button>
+    </div>
+
+    <div *ngIf="operation === 'get'">
+      <h2>Get Customer</h2>
+      <button (click)="getAllCustomers()">Get All Customers</button>
+      <div class="data-display">
+        <ul>
+          <li *ngFor="let customer of customers" class="gap">
+            <div>
+              <strong>Customer ID:</strong> {{ customer._id }}
+            </div>
+            <div>
+              <strong>Name:</strong> {{ customer.first_name }} {{ customer.last_name }}
+            </div>
+            <div>
+              <strong>Email:</strong> {{ customer.email }}
+            </div>
+          </li>
+        </ul>
+      </div>
+    
+      <div>
+        <label for="customerId">Enter Customer ID:</label>
+        <input type="text" id="customerId" [(ngModel)]="_id">
+        <button (click)="getCustomerById()">Get Customer</button>
+      </div>
+       
+      <div *ngIf="customer">
+        <h2>Customer Details</h2>
+        <p><strong>Customer ID:</strong> {{ customer._id }}</p>
+        <p><strong>Name:</strong> {{ customer.first_name }} {{ customer.last_name }}</p>
+        <p><strong>Email:</strong> {{ customer.email }}</p>
+      </div>
+    </div>
+    
+    <div *ngIf="operation === 'update'">
+      <h2>Update Customer </h2>
+      <div>
+        <label for="customerId">Enter Customer ID:</label>
+        <input type="text" id="customerId" [(ngModel)]="customerId">
+        <button (click)="findCustomer()">Find</button>
+      </div>
+      
+      <div *ngIf="selectedCustomer">
+        <h2>Update Customer</h2>
+        <div>
+          <label for="updatedFirstName">Updated First Name:</label>
+          <input type="text" id="updatedFirstName" [(ngModel)]="updatedFirstName">
+        </div>
+        <div>
+          <label for="updatedLastName">Updated Last Name:</label>
+          <input type="text" id="updatedLastName" [(ngModel)]="updatedLastName">
+        </div>
+        <div>
+          <label for="updatedEmail">Updated Email:</label>
+          <input type="text" id="updatedEmail" [(ngModel)]="updatedEmail">
+        </div>
+        <button (click)="updateCustomer()">Update</button>
+      </div>
+    </div>
+    
+    
+    <div *ngIf="operation === 'delete'">
+      <h2>Delete Customer</h2>
+      <div>
+        <label for="customerId">Enter Customer ID:</label>
+        <input type="text" id="customerId" [(ngModel)]="customerId">
+        <button (click)="deleteCustomer()">Delete Customer</button>
+      </div>
+    </div>
+
+

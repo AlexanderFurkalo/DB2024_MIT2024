@@ -1,0 +1,120 @@
+<div class="crud-buttons">
+    <button class="crud-button" (click)="performOperation('create')">Create</button>
+    <button class="crud-button" (click)="performOperation('get')">Read</button>
+    <button class="crud-button" (click)="performOperation('update')">Update</button>
+    <button class="crud-button" (click)="performOperation('delete')">Delete</button>
+</div>
+
+<div *ngIf="operation === 'create'">
+    <h2>Create Purchase</h2>
+    <div>
+      <label for="customerId">Customer ID:</label>
+      <input type="text" id="customerId" [(ngModel)]="newPurchase.customer_id">
+    </div>
+    <div>
+      <label for="furnitureId">Furniture ID:</label>
+      <input type="text" id="furnitureId" [(ngModel)]="newPurchase.furniture_id">
+    </div>
+    <div>
+      <label for="purchaseDate">Purchase Date:</label>
+      <input type="date" id="purchaseDate" [(ngModel)]="newPurchase.purchase_date">
+    </div>
+    <div>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" [(ngModel)]="newPurchase.quantity">
+    </div>
+    <div>
+      <label for="totalPrice">Total Price:</label>
+      <input type="number" id="totalPrice" [(ngModel)]="newPurchase.total_price">
+    </div>
+    <button (click)="createPurchase()">Create</button>
+</div>
+  
+<div *ngIf="operation === 'get'">
+    <h2>Get Purchase</h2>
+    <button (click)="getAllPurchases()">Get All Purchases</button>
+    <div class="data-display">
+      <ul>
+        <li *ngFor="let purchase of purchases" class="gap">
+          <div>
+            <strong>Purchase ID:</strong> {{ purchase._id }}
+          </div>
+          <div>
+            <strong>Customer ID:</strong> {{ purchase.customer_id }}
+          </div>
+          <div>
+            <strong>Furniture ID:</strong> {{ purchase.furniture_id }}
+          </div>
+          <div>
+            <strong>Purchase Date:</strong> {{ purchase.purchase_date }}
+          </div>
+          <div>
+            <strong>Quantity:</strong> {{ purchase.quantity }}
+          </div>
+          <div>
+            <strong>Total Price:</strong> {{ purchase.total_price }}
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+        <label for="purchaseId">Enter Purchase ID:</label>
+        <input type="text" id="purchaseId" [(ngModel)]="_id">
+        <button (click)="getPurchaseById()">Get Purchase</button>
+      </div>
+       
+      <div *ngIf="selectedPurchase">
+        <h2>Purchase Details</h2>
+        <p><strong>Purchase ID:</strong> {{ selectedPurchase._id }}</p>
+        <p><strong>Customer ID:</strong> {{ selectedPurchase.customer_id }}</p>
+        <p><strong>Furniture ID:</strong> {{ selectedPurchase.furniture_id }}</p>
+        <p><strong>Purchase Date:</strong> {{ selectedPurchase.purchase_date }}</p>
+        <p><strong>Quantity:</strong> {{ selectedPurchase.quantity }}</p>
+        <p><strong>Total Price:</strong> {{ selectedPurchase.total_price }}</p>
+      </div>
+</div>
+  
+<div *ngIf="operation === 'update'">
+    <h2>Update Purchase</h2>
+    <div>
+      <label for="purchaseId">Enter Purchase ID:</label>
+      <input type="text" id="purchaseId" [(ngModel)]="purchaseId">
+      <button (click)="findPurchase()">Find</button>
+    </div>
+    
+    <div *ngIf="selectedPurchase">
+      <h2>Update Purchase</h2>
+      <div>
+        <label for="updatedCustomerId">Updated Customer ID:</label>
+        <input type="text" id="updatedCustomerId" [(ngModel)]="updatedCustomerId">
+      </div>
+      <div>
+        <label for="updatedFurnitureId">Updated Furniture ID:</label>
+        <input type="text" id="updatedFurnitureId" [(ngModel)]="updatedFurnitureId">
+      </div>
+      <div>
+        <label for="updatedPurchaseDate">Updated Purchase Date:</label>
+        <input type="date" id="updatedPurchaseDate" [(ngModel)]="updatedPurchaseDate">
+      </div>
+      <div>
+        <label for="updatedQuantity">Updated Quantity:</label>
+        <input type="number" id="updatedQuantity" [(ngModel)]="updatedQuantity">
+      </div>
+      <div>
+        <label for="updatedTotalPrice">Updated Total Price:</label>
+        <input type="number" id="updatedTotalPrice" [(ngModel)]="updatedTotalPrice">
+      </div>
+      <button (click)="updatePurchase()">Update</button>
+    </div>
+</div>
+  
+  
+<div *ngIf="operation === 'delete'">
+    <h2>Delete Purchase</h2>
+    <div>
+      <label for="purchaseId">Enter Purchase ID:</label>
+      <input type="text" id="purchaseId" [(ngModel)]="purchaseId">
+      <button (click)="deletePurchase()">Delete Purchase</button>
+    </div>
+</div>

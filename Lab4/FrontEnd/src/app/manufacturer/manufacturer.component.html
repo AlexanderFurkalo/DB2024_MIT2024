@@ -1,0 +1,84 @@
+<div class="crud-buttons">
+    <button class="crud-button" (click)="performOperation('create')">Create</button>
+    <button class="crud-button" (click)="performOperation('get')">Read</button>
+    <button class="crud-button" (click)="performOperation('update')">Update</button>
+    <button class="crud-button" (click)="performOperation('delete')">Delete</button>
+</div>
+
+<div *ngIf="operation === 'create'">
+    <h2>Create Manufacturer</h2>
+    <div>
+      <label for="manufacturerName">Name:</label>
+      <input type="text" id="manufacturerName" [(ngModel)]="newManufacturer.name">
+    </div>
+    <div>
+      <label for="manufacturerLocation">Location:</label>
+      <input type="text" id="manufacturerLocation" [(ngModel)]="newManufacturer.location">
+    </div>
+    <button (click)="createManufacturer()">Create</button>
+</div>
+  
+<div *ngIf="operation === 'get'">
+    <h2>Get Manufacturer</h2>
+    <button (click)="getAllManufacturers()">Get All Manufacturers</button>
+    <div class="data-display">
+      <ul>
+        <li *ngFor="let manufacturer of manufacturers" class="gap">
+          <div>
+            <strong>Manufacturer ID:</strong> {{ manufacturer._id }}
+          </div>
+          <div>
+            <strong>Name:</strong> {{ manufacturer.name }}
+          </div>
+          <div>
+            <strong>Location:</strong> {{ manufacturer.location }}
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <label for="manufacturerId">Enter Manufacturer ID:</label>
+      <input type="text" id="manufacturerId" [(ngModel)]="manufacturerId">
+      <button (click)="getManufacturerById()">Get Manufacturer</button>
+    </div>
+     
+    <div *ngIf="manufacturer">
+      <h2>Manufacturer Details</h2>
+      <p><strong>Manufacturer ID:</strong> {{ manufacturer._id }}</p>
+      <p><strong>Name:</strong> {{ manufacturer.name }}</p>
+      <p><strong>Location:</strong> {{ manufacturer.location }}</p>
+    </div>
+</div>
+  
+<div *ngIf="operation === 'update'">
+    <h2>Update Manufacturer</h2>
+    <div>
+      <label for="updateManufacturerId">Enter Manufacturer ID:</label>
+      <input type="text" id="updateManufacturerId" [(ngModel)]="manufacturerId">
+      <button (click)="findManufacturer()">Find</button>
+    </div>
+    
+    <div *ngIf="selectedManufacturer">
+      <h2>Update Manufacturer</h2>
+      <div>
+        <label for="updatedManufacturerName">Updated Name:</label>
+        <input type="text" id="updatedManufacturerName" [(ngModel)]="updatedName">
+      </div>
+      <div>
+        <label for="updatedManufacturerLocation">Updated Location:</label>
+        <input type="text" id="updatedManufacturerLocation" [(ngModel)]="updatedLocation">
+      </div>
+      <button (click)="updateManufacturer()">Update</button>
+    </div>
+</div>
+  
+<div *ngIf="operation === 'delete'">
+    <h2>Delete Manufacturer</h2>
+    <div>
+      <label for="deleteManufacturerId">Enter Manufacturer ID:</label>
+      <input type="text" id="deleteManufacturerId" [(ngModel)]="manufacturerId">
+      <button (click)="deleteManufacturer()">Delete Manufacturer</button>
+    </div>
+</div>
+

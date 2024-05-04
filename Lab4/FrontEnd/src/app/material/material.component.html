@@ -1,0 +1,71 @@
+<div class="crud-buttons">
+    <button class="crud-button" (click)="performOperation('create')">Create</button>
+    <button class="crud-button" (click)="performOperation('get')">Read</button>
+    <button class="crud-button" (click)="performOperation('update')">Update</button>
+    <button class="crud-button" (click)="performOperation('delete')">Delete</button>
+</div>
+
+<div *ngIf="operation === 'create'">
+    <h2>Create Material</h2>
+    <div>
+      <label for="materialName">Name:</label>
+      <input type="text" id="materialName" [(ngModel)]="newMaterial.name">
+    </div>
+    <button (click)="createMaterial()">Create</button>
+</div>
+  
+<div *ngIf="operation === 'get'">
+    <h2>Get Material</h2>
+    <button (click)="getAllMaterials()">Get All Materials</button>
+    <div class="data-display">
+      <ul>
+        <li *ngFor="let material of materials" class="gap">
+          <div>
+            <strong>Material ID:</strong> {{ material._id }}
+          </div>
+          <div>
+            <strong>Name:</strong> {{ material.name }}
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <label for="materialId">Enter Material ID:</label>
+      <input type="text" id="materialId" [(ngModel)]="_id">
+      <button (click)="getMaterialById()">Get Material</button>
+    </div>
+  
+    <div *ngIf="selectedMaterial">
+        <h2>Material Details</h2>
+        <p><strong>Material ID:</strong> {{ selectedMaterial._id }}</p>
+        <p><strong>Name:</strong> {{ selectedMaterial.name }}</p>
+      </div>
+</div>
+
+<div *ngIf="operation === 'update'">
+    <h2>Update Material</h2>
+    <div>
+      <label for="materialId">Enter Material ID:</label>
+      <input type="text" id="materialId" [(ngModel)]="materialId">
+      <button (click)="findMaterial()">Find</button>
+    </div>
+    
+    <div *ngIf="selectedMaterial">
+      <h2>Update Material</h2>
+      <div>
+        <label for="updatedMaterialName">Updated Material Name:</label>
+        <input type="text" id="updatedMaterialName" [(ngModel)]="updatedMaterialName">
+      </div>
+      <button (click)="updateMaterial()">Update</button>
+    </div>
+  </div>
+  
+<div *ngIf="operation === 'delete'">
+    <h2>Delete Material</h2>
+    <div>
+      <label for="materialId">Enter Material ID:</label>
+      <input type="text" id="materialId" [(ngModel)]="materialId">
+      <button (click)="deleteMaterial()">Delete Material</button>
+    </div>
+</div>

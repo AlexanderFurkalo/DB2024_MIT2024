@@ -1,0 +1,131 @@
+<div class="crud-buttons">
+    <button class="crud-button" (click)="performOperation('create')">Create</button>
+    <button class="crud-button" (click)="performOperation('get')">Read</button>
+    <button class="crud-button" (click)="performOperation('update')">Update</button>
+    <button class="crud-button" (click)="performOperation('delete')">Delete</button>
+</div>
+
+<div *ngIf="operation === 'create'">
+    <h2>Create Furniture</h2>
+    <div>
+      <label for="furnitureName">Name:</label>
+      <input type="text" id="furnitureName" [(ngModel)]="newFurniture.name">
+    </div>
+    <div>
+      <label for="furnitureType">Type:</label>
+      <input type="text" id="furnitureType" [(ngModel)]="newFurniture.type">
+    </div>
+    <div>
+      <label for="materialId">Material ID:</label>
+      <input type="text" id="materialId" [(ngModel)]="newFurniture.material_id">
+    </div>
+    <div>
+      <label for="manufacturerId">Manufacturer ID:</label>
+      <input type="text" id="manufacturerId" [(ngModel)]="newFurniture.manufacturer_id">
+    </div>
+    <div>
+      <label for="price">Price:</label>
+      <input type="number" id="price" [(ngModel)]="newFurniture.price">
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" [(ngModel)]="newFurniture.description"></textarea>
+    </div>
+    <button (click)="createFurniture()">Create</button>
+</div>
+
+<div *ngIf="operation === 'get'">
+    <h2>Get Furniture</h2>
+    <button (click)="getAllFurniture()">Get All Furniture</button>
+    <div class="data-display">
+      <ul>
+        <li *ngFor="let furniture of furniture" class="gap">
+          <div>
+            <strong>Furniture ID:</strong> {{ furniture._id }}
+          </div>
+          <div>
+            <strong>Name:</strong> {{ furniture.name }}
+          </div>
+          <div>
+            <strong>Type:</strong> {{ furniture.type }}
+          </div>
+          <div>
+            <strong>Material ID:</strong> {{ furniture.material_id }}
+          </div>
+          <div>
+            <strong>Manufacturer ID:</strong> {{ furniture.manufacturer_id }}
+          </div>
+          <div>
+            <strong>Price:</strong> {{ furniture.price }}
+          </div>
+          <div>
+            <strong>Description:</strong> {{ furniture.description }}
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <label for="furnitureId">Enter Furniture ID:</label>
+      <input type="text" id="furnitureId" [(ngModel)]="_id">
+      <button (click)="getFurnitureById()">Get Furniture</button>
+    </div>
+  
+    <div *ngIf="selectedFurniture">
+      <h2>Furniture Details</h2>
+      <p><strong>Furniture ID:</strong> {{ selectedFurniture._id }}</p>
+      <p><strong>Name:</strong> {{ selectedFurniture.name }}</p>
+      <p><strong>Type:</strong> {{ selectedFurniture.type }}</p>
+      <p><strong>Material ID:</strong> {{ selectedFurniture.material_id }}</p>
+      <p><strong>Manufacturer ID:</strong> {{ selectedFurniture.manufacturer_id }}</p>
+      <p><strong>Price:</strong> {{ selectedFurniture.price }}</p>
+      <p><strong>Description:</strong> {{ selectedFurniture.description }}</p>
+    </div>
+</div>
+
+<div *ngIf="operation === 'update'">
+    <h2>Update Furniture </h2>
+    <div>
+      <label for="furnitureId">Enter Furniture ID:</label>
+      <input type="text" id="furnitureId" [(ngModel)]="furnitureId">
+      <button (click)="findFurniture()">Find</button>
+    </div>
+    
+    <div *ngIf="selectedFurniture">
+      <h2>Update Furniture</h2>
+      <div>
+        <label for="updatedName">Updated Name:</label>
+        <input type="text" id="updatedName" [(ngModel)]="updatedName">
+      </div>
+      <div>
+        <label for="updatedType">Updated Type:</label>
+        <input type="text" id="updatedType" [(ngModel)]="updatedType">
+      </div>
+      <div>
+        <label for="updatedMaterialId">Updated Material ID:</label>
+        <input type="text" id="updatedMaterialId" [(ngModel)]="updatedMaterialId">
+      </div>
+      <div>
+        <label for="updatedManufacturerId">Updated Manufacturer ID:</label>
+        <input type="text" id="updatedManufacturerId" [(ngModel)]="updatedManufacturerId">
+      </div>
+      <div>
+        <label for="updatedPrice">Updated Price:</label>
+        <input type="text" id="updatedPrice" [(ngModel)]="updatedPrice">
+      </div>
+      <div>
+        <label for="updatedDescription">Updated Description:</label>
+        <input type="text" id="updatedDescription" [(ngModel)]="updatedDescription">
+      </div>
+      <button (click)="updateFurniture()">Update</button>
+    </div>
+</div>
+
+<div *ngIf="operation === 'delete'">
+    <h2>Delete Furniture</h2>
+    <div>
+      <label for="furnitureId">Enter Furniture ID:</label>
+      <input type="text" id="furnitureId" [(ngModel)]="furnitureId">
+      <button (click)="deleteFurniture()">Delete Furniture</button>
+    </div>
+</div>
